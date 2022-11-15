@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aankote <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 20:06:10 by aankote           #+#    #+#             */
-/*   Updated: 2022/11/14 20:06:12 by aankote          ###   ########.fr       */
+/*   Created: 2022/11/15 17:30:55 by aankote           #+#    #+#             */
+/*   Updated: 2022/11/15 17:30:58 by aankote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 char	*join_free(char *sta_buff, char *buff)
 {
@@ -17,7 +18,9 @@ char	*join_free(char *sta_buff, char *buff)
 
 	temp = ft_strjoin(sta_buff, buff);
 	free(sta_buff);
-	return (temp);
+	return (t
+	
+	emp);
 }
 
 char	*get_read(int fd, char *res)
@@ -95,15 +98,15 @@ char	*get_next(char *buff)
 
 char	*get_next_line(int fd)
 {
-	static char *res;
+	static char *res[OPEN_MAX];
 	char *line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	res = get_read(fd, res);
-	if (!res)
+	res[fd] = get_read(fd, res[fd]);
+	if (!res[fd])
 		return (0);
-	line = ft_get_line(res);
-	res = get_next(res);
+	line = ft_get_line(res[fd]);
+	res[fd] = get_next(res[fd]);
 	return (line);
 }

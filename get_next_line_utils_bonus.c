@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aankote <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 20:07:03 by aankote           #+#    #+#             */
-/*   Updated: 2022/11/14 20:07:05 by aankote          ###   ########.fr       */
+/*   Created: 2022/11/15 17:31:26 by aankote           #+#    #+#             */
+/*   Updated: 2022/11/15 17:31:27 by aankote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -90,3 +89,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	newstr[i] = '\0';
 	return (newstr);
 }
+
