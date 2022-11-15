@@ -12,48 +12,41 @@
 
 #include "get_next_line.h"
 
-
-
-char	*ft_strdup(const char *s1)
+size_t	ft_strlen(const char *s)
 {
-	char	*copy;
-	size_t	len;
-
-	len = ft_strlen(s1);
-	copy = (char *)malloc(sizeof(char) * (len + 1));
-	if (copy)
-	{
-		ft_strlcpy(copy, s1, len + 1);
-		return (copy);
-	}
-	return (0);
-}
-
-char	*ft_substr(char const *s, unsigned int start, unsigned int len)
-{
-	unsigned int	st;
-	unsigned int	i;
-	char			*substr;
+	size_t	i;
 
 	i = 0;
-	st = start;
-	if (s == NULL)
-		return (0);
-	if (start >= (unsigned int)ft_strlen(s))
-		return (ft_strdup(""));
-	if (ft_strlen(s) - start < len)
+	while (s[i])
 	{
-		substr = (char *)malloc((ft_strlen(s) - start + 1));
-		len = ft_strlen(s) - start;
+		i++;
 	}
-	else
-		substr = (char *)malloc(sizeof(char) * (len + 1));
-	if (substr)
+	return (i);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
 	{
-		while (s[st] && st < len + start)
-			substr[i++] = s[st++];
-		substr[i] = '\0';
-		return (substr);
+		((unsigned char *)s)[i] = 0;
+		i++;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*ptr;
+
+	if (count && size > SIZE_MAX / count)
+		return (0);
+	ptr = (char *)malloc(count * size);
+	if (ptr)
+	{
+		ft_bzero(ptr, count * size);
+		return (ptr);
 	}
 	return (0);
 }
@@ -74,26 +67,6 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	unsigned int	i;
-
-	i = 0;
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	if (src != NULL)
-	{
-		while (src[i] && i < dstsize - 1 && dstsize > 0)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (ft_strlen(src));
-}
-
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
@@ -104,11 +77,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	j = 0;
 	if (!s1)
-	{
-		newstr = malloc(ft_strlen(s2));
-		
-		return ((char *)s2);
-	}
+		return (0);
 	total_size = ft_strlen(s1) + ft_strlen(s2);
 	newstr = malloc(sizeof(char) * (total_size + 1));
 	if (!newstr)
@@ -123,4 +92,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	newstr[i] = '\0';
 	return (newstr);
 }
-
