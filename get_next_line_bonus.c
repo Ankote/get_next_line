@@ -18,9 +18,7 @@ char	*join_free(char *sta_buff, char *buff)
 
 	temp = ft_strjoin(sta_buff, buff);
 	free(sta_buff);
-	return (t
-	
-	emp);
+	return (temp);
 }
 
 char	*get_read(int fd, char *res)
